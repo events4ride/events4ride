@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +51,30 @@ public class UserRestControllerV1 {
         }
 
         List<UserDto> usersDto = ObjectMapperUtils.mapAll(users, UserDto.class);
+
+        return new ResponseEntity<>(usersDto, HttpStatus.OK);
+    }
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
+
+        if (userId == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        User user = this.userService.findById(userId);
+
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        UserDto usersDto = ObjectMapperUtils.map(user, UserDto.class);
 
         return new ResponseEntity<>(usersDto, HttpStatus.OK);
     }
