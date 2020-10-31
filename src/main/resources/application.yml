@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    com.rides: DEBUG
+  file:
+    name: app.log
+
+
+  data:
+    jpa:
+      repositories.enabled: true
+
+  jpa:
+    openInView: false
+    show_sql: true
