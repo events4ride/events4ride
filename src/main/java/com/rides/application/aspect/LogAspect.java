@@ -1,17 +1,22 @@
 package com.rides.application.aspect;
 
-import com.rides.application.config.AopConfig;
+import com.rides.application.repository.user.UserRepository;
+import com.rides.application.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * Aspect Log for {@link UserService} .
+ *
+ * @author Sergei Perminov
+ * @version 1.0
+ */
 
 @Component
 @Aspect
